@@ -40,18 +40,20 @@ const SideBarChat = ({id, chatName}) => {
     db
       .collection("chats")
       .doc(id).collection("messages")
-      .orderBy("TimeStamp", "desc")
+      .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) =>
         setChatInfo(snapshot.docs.map(doc => doc.data())))
   }, [id])
 
-  console.log("KKKKKKKKK: ", id, chatName);
+  console.log("KKKKKKKKK: ", id, chatName); // --> これはちゃんと出てる
 
   return (
     <SidebarChatContainer onClick={() => dispatch(
       setChat({
+          // chatId: id,
+          // chatName
           chatId: id,
-          chatName
+          chatName: chatName,
       })
   )}>
       <Avatar src={chatInfo[0]?.photo} />

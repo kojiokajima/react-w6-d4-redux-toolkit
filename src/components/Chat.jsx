@@ -74,7 +74,7 @@ const Chat = () => {
   const chatId = useSelector(selectChatId);
   const user = useSelector(selectUser);
 
-  console.log("SELECT USER IS ", user); // --> {uid: ..., email: ..., photo: ..., dispalyName: ...}ってやつ
+  // console.log("SELECT USER IS ", user); // --> {uid: ..., email: ..., photo: ..., dispalyName: ...}ってやつ
 
   useEffect(() => {
     if (chatId) {

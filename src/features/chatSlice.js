@@ -9,7 +9,7 @@ export const chatSlice = createSlice({
   reducers: {
     setChat: (state, action) => {
       state.chatId = action.payload.chatId
-      state.chatItem = action.payload.chatName
+      state.chatName = action.payload.chatName
       // action.payloadには、dispatch(setChat())って呼んだ時のsetChatの中のargumentが入る cf) SideBarChat.js Line 50
 
     }
