@@ -1,10 +1,10 @@
-import React, { forwardRef } from 'react'
-import { Avatar } from '@material-ui/core'
-import { useSelector } from 'react-redux'
-import styled from 'styled-components'
-import * as timeago from 'timeago.js'
+import React　from "react";
+import { Avatar } from "@material-ui/core";
+import { useSelector } from "react-redux";
+import styled from "styled-components";
+import * as timeago from "timeago.js";
 
-import { selectUser } from '../features/userSlice'
+import { selectUser } from "../features/userSlice";
 
 const MessageContainer = styled.div`
   display: flex;
@@ -14,13 +14,11 @@ const MessageContainer = styled.div`
   justify-content: space-between;
   margin: 15px;
 
-
-  ${({ sender }) =>
-    sender &&
+  ${({ $sender }) =>
+    $sender &&
     `
     margin-left: auto;
   `}
-  
 `;
 
 const MessageBubble = styled.p`
@@ -31,17 +29,18 @@ const MessageBubble = styled.p`
   margin: 10px;
   margin-right: auto;
 
-  ${({ sender }) =>
-    sender &&
+  ${({ $sender }) =>
+    $sender &&
     `
     background-color: #3cabfa;
     color: white;
   `}
-  
 `;
 
 const AvatarContainer = styled(Avatar)`
-  ${({ sender }) => sender &&`
+  ${({ $sender }) =>
+    $sender &&
+    `
     order: 1;
     margin: 15px;
   `}
@@ -55,21 +54,32 @@ const TimeStamp = styled.small`
   right: 0;
 `;
 
-const Message = forwardRef(
-    ({ id, contents: { timestamp, email, photo, message } }, ref) => {
-        const user = useSelector(selectUser)
-        const isUser = user.email === email
+// const Message = forwardRef(
+//   ({ id, contents: { timestamp, email, photo, message } }, ref) => {
+//     const user = useSelector(selectUser);
+//     const isUser = user.email === email;
 
-        return(
-            <MessageContainer ref={ref} sender={isUser}>
-                <AvatarContainer src={photo} sender={isUser} />
-                <MessageBubble sender={isUser}>{message}</MessageBubble>
-                <TimeStamp>
-                    {timeago.format(new Date(timestamp?.toDate()))}
-                </TimeStamp>
-            </MessageContainer>
-        )
-    }
-)
+//     return (
+//       <MessageContainer ref={ref} $sender={isUser}>
+//         <AvatarContainer src={photo} $sender={isUser} />
+//         <MessageBubble $sender={isUser}>{message}</MessageBubble>
+//         <TimeStamp>{timeago.format(new Date(timestamp?.toDate()))}</TimeStamp>
+//       </MessageContainer>
+//     );
+//   }
+// );
+const Message = ({ id, contents: { timestamp, email, photo, message } }) => {
+    const user = useSelector(selectUser);
+    const isUser = user.email === email;
 
-export default Message
+    return (
+      <MessageContainer  $sender={isUser}>
+        <AvatarContainer src={photo} $sender={isUser} />
+        <MessageBubble $sender={isUser}>{message}</MessageBubble>
+        <TimeStamp>{timeago.format(new Date(timestamp?.toDate()))}</TimeStamp>
+      </MessageContainer>
+    );
+  }
+;
+
+export default Message;

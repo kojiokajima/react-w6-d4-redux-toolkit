@@ -45,7 +45,7 @@ const SideBarChat = ({id, chatName}) => {
         setChatInfo(snapshot.docs.map(doc => doc.data())))
   }, [id])
 
-  console.log("KKKKKKKKK: ", id, chatName); // --> これはちゃんと出てる
+  // console.log("KKKKKKKKK: ", id, chatName); // --> これはちゃんと出てる
 
   return (
     <SidebarChatContainer onClick={() => dispatch(

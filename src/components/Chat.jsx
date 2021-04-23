@@ -79,6 +79,7 @@ const Chat = () => {
   useEffect(() => {
     if (chatId) {
       // 最初にuseEffectが実行されるときはchatIdがnullだから、これより下の行は実行されない。
+      // だからmessagesは空の配列になってて
       db.collection("chats")
         .doc(chatId)
         .collection("messages")
@@ -111,7 +112,7 @@ const Chat = () => {
 
     setInput("");
   };
-  console.log("NAME ID:", chatName, chatId);
+  // console.log("NAME ID:", chatName, chatId);
 
   return (
     <ChatContainer>

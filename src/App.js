@@ -9,12 +9,12 @@ import Main from './components/Main'
 const App = () => {
   const user = useSelector(selectUser)
   const dispatch = useDispatch()
-  console.log("USER IS ", user);
+  // console.log("USER IS ", user);
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       // console.log("authUser is ", authUser);
-      console.log("WHAT THE HELL IS DSIPATCH: ", dispatch);
+      // console.log("WHAT THE HELL IS DSIPATCH: ", dispatch);
       // --> authUserの中はこんな感じ -- Im {J: Array(0), l: "AIzaSyA-lXC5Sn_yTj0TCN3eH-bzRj0CfSVPpNs", m: "[DEFAULT]", s: "imessage-8a69c.firebaseapp.com", a: Ii, …}
       // --> めっちゃいろんな情報入ってるからその中から欲しいやつだけピックアップするんだねぇ
       // --> ピックアップした情報(オブジェクト)をlogin関数にpayloadとして渡して、currentUserにセットしてるんだねぇ

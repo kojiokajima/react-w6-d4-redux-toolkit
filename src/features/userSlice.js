@@ -23,7 +23,7 @@ export const { login, logout } = userSlice.actions
 // --> ちなみにuserSlice自体はこんな感じ -- {name: "user", actions: {…}, caseReducers: {…}, reducer: ƒ}
 // 
 
-console.log("WHAT IS THIS ", userSlice);
+// console.log("WHAT IS THIS ", userSlice);
 
 export const selectUser = (state) => {
   // console.log("STATE IS ", state);
