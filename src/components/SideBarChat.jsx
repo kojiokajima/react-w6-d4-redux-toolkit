@@ -5,7 +5,7 @@ import * as timeago from 'timeago.js'
 import styled from 'styled-components'
 
 import {setChat} from '../features/chatSlice'
-import {db} from '../firbase/firebase' 
+import {db} from '../firbase/firebase'
 
 const SidebarChatContainer = styled.div`
   display: flex;
@@ -45,20 +45,22 @@ const SideBarChat = ({id, chatName}) => {
         setChatInfo(snapshot.docs.map(doc => doc.data())))
   }, [id])
 
+  console.log("KKKKKKKKK: ", id, chatName);
+
   return (
     <SidebarChatContainer onClick={() => dispatch(
       setChat({
-        chatId: id,
-        chatName  // --> 例の省略バージョン
+          chatId: id,
+          chatName
       })
-    )} >
+  )}>
       <Avatar src={chatInfo[0]?.photo} />
       <SidebarChatInfoContainer>
         <h3>{chatName}</h3>
         <p>{chatInfo[0]?.message}</p>
         <TimeStamp>
           {
-            timeago.format(new Date(chatInfo[0]?.timestamp.toDate()))
+            timeago.format(new Date(chatInfo[0]?.timestamp?.toDate()))
           }
         </TimeStamp>
       </SidebarChatInfoContainer>
