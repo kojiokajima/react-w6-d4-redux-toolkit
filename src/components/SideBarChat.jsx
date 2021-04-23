@@ -53,7 +53,7 @@ const SideBarChat = ({id, chatName}) => {
           // chatId: id,
           // chatName
           chatId: id,
-          chatName: chatName,
+          chatName,
       })
   )}>
       <Avatar src={chatInfo[0]?.photo} />

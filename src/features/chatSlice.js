@@ -18,10 +18,7 @@ export const chatSlice = createSlice({
 
 export const {setChat} = chatSlice.actions
 
-export const selectChatId = (state) => {
-  console.log("CHAT CHAT ", state.chat);
-  return state.chat.chatId
-} // --> selectorの代わりかなこれ
+export const selectChatId = (state) => state.chat.chatId // --> selectorの代わりかなこれ
 export const selectChatName = (state) => state.chat.chatName // --> selectorの代わりかなこれ
 
 export default chatSlice.reducer

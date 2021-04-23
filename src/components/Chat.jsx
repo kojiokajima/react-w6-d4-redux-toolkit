@@ -95,6 +95,7 @@ const Chat = () => {
 
   const sendMessage = (event) => {
     event.preventDefault();
+    // --> これないと、sendしたあとまたレンダーかかっちゃって右側のチャット画面がいなくなっちゃう
     db.collection("chats").doc(chatId).collection("messages").add({
       uid: user.uid,
       photo: user.photo,
@@ -119,6 +120,7 @@ const Chat = () => {
         <Flipped>
           <>
             {messages.map(({ id, data }) => 
+            // 最初の画面で何も表示されないのは、シンプルにmessagesが空の配列だからってことか。そうかそうか
                 <Message key={id} contents={data} />
             )}
           </>
