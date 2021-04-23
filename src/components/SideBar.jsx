@@ -68,11 +68,13 @@ const SideBar = () => {
       })
     }
   }
+  // console.log("CHATTTTTT: ", chats);
 
   return (
     <SidebarContainer>
       <SidebarHeader>
         <SidebarAvatar src={user.photo} onClick={() => auth.signOut()} />
+        {/* auth.signOut()でリアルガチサインアウトしてる */}
         <SidebarTitle>{user.displayName}</SidebarTitle>
         <IconButton
           variant="outline"
@@ -83,9 +85,11 @@ const SideBar = () => {
       </SidebarHeader>
       <SidebarChats>
         {
-          chats.map(({id, data: {chatName}}) => (
+          chats.map(({id, data: {chatName}}) => {
+            // console.log("HIHIHIO: ", chatName);
+            return (
             <SideBarChat key={id} id={id} chatName={chatName} />
-          ))
+          )})
         }
       </SidebarChats>
     </SidebarContainer>

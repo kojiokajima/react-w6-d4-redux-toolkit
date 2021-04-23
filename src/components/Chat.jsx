@@ -4,11 +4,13 @@ import { MicNone } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import FlipMove from "react-flip-move";
+import { Flipped } from 'react-flip-toolkit'
 
 import { selectChatId, selectChatName } from "../features/chatSlice";
 import { selectUser } from "../features/userSlice";
 import firebase, { db } from "../firbase/firebase";
 import Message from "./Message";
+
 
 const ChatContainer = styled.div`
   display: flex;
@@ -72,6 +74,8 @@ const Chat = () => {
   const chatId = useSelector(selectChatId);
   const user = useSelector(selectUser);
 
+  // console.log("SELECT USER IS ", user); // --> {uid: ..., email: ..., photo: ..., dispalyName: ...}ってやつ
+
   useEffect(() => {
     if (chatId) {
       db.collection("chats")
@@ -91,6 +95,7 @@ const Chat = () => {
 
   const sendMessage = (event) => {
     event.preventDefault();
+    // --> これないと、sendしたあとまたレンダーかかっちゃって右側のチャット画面がいなくなっちゃう
     db.collection("chats").doc(chatId).collection("messages").add({
       uid: user.uid,
       photo: user.photo,
@@ -102,6 +107,7 @@ const Chat = () => {
 
     setInput("");
   };
+  console.log("NAME ID:", chatName, chatId);
 
   return (
     <ChatContainer>
@@ -111,28 +117,34 @@ const Chat = () => {
         </ChatHeader>
       </ChatHeaderContainer>
       <ChatMessagesContainer>
-        <FlipMove>
-          {messages.map(({ id, data }) => (
-            <Message key={id} contents={data} />
-          ))}
-        </FlipMove>
+        <Flipped>
+          <>
+            {messages.map(({ id, data }) => 
+            // 最初の画面で何も表示されないのは、シンプルにmessagesが空の配列だからってことか。そうかそうか
+                <Message key={id} contents={data} />
+            )}
+          </>
+        </Flipped>
       </ChatMessagesContainer>
       <ChatInputContainer>
         <ChatForm>
           <ChatInput
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Type a message"
-            type="text"
+            placeholder='Type a message'
+            type='text'
             disabled={!chatId}
           />
           <ChatSubmitButton onClick={sendMessage}>
             Send Message
           </ChatSubmitButton>
         </ChatForm>
+        <IconButton>
+          <MicNone />
+        </IconButton>
       </ChatInputContainer>
     </ChatContainer>
-  );
-};
+  )
+}
 
 export default Chat;

@@ -14,11 +14,14 @@ const MessageContainer = styled.div`
   justify-content: space-between;
   margin: 15px;
 
+
   ${({ sender }) =>
     sender &&
     `
     margin-left: auto;
   `}
+
+  
 `;
 
 const MessageBubble = styled.p`
@@ -35,6 +38,7 @@ const MessageBubble = styled.p`
     background-color: #3cabfa;
     color: white;
   `}
+  
 `;
 
 const AvatarContainer = styled(Avatar)`

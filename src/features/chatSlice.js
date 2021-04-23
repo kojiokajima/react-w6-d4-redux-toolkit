@@ -9,14 +9,17 @@ export const chatSlice = createSlice({
   reducers: {
     setChat: (state, action) => {
       state.chatId = action.payload.chatId
-      state.chatItem = action.payload.chatName
+      state.chatName = action.payload.chatName
+      // action.payloadには、dispatch(setChat())って呼んだ時のsetChatの中のargumentが入る cf) SideBarChat.js Line 50
+
     }
   }
 })
 
 export const {setChat} = chatSlice.actions
 
-export const selectChatId = (state) => state.chat.chatId
-export const selectChatName = (state) => state.chat.chatName
+export const selectChatId = (state) => state.chat.chatId // --> selectorの代わりかなこれ
+export const selectChatName = (state) => state.chat.chatName // --> selectorの代わりかなこれ
 
 export default chatSlice.reducer
+// --> createSlice(.....).reducerが今まででいうuserReducerみたいになってる。
