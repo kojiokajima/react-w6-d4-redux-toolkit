@@ -2,20 +2,14 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 
 import { selectUser, login, logout } from './features/userSlice'
-// import {selectChatId, selectChatName} from './features/chatSlice'
 import { auth } from './firbase/firebase'
 import Login from './components/Login'
 import Main from './components/Main'
 
 const App = () => {
   const user = useSelector(selectUser)
-  // const chatName = useSelector(selectChatName)
-  // const chatId = useSelector(selectChatId)
   const dispatch = useDispatch()
   console.log("USER IS ", user);
-  // console.log("NAME IS ", chatName);
-  // console.log("ID IS ", chatId);
-
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {

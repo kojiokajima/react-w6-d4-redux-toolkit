@@ -20,7 +20,6 @@ const MessageContainer = styled.div`
     `
     margin-left: auto;
   `}
-
   
 `;
 

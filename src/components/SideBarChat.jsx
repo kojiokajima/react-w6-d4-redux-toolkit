@@ -50,11 +50,12 @@ const SideBarChat = ({id, chatName}) => {
   return (
     <SidebarChatContainer onClick={() => dispatch(
       setChat({
-          // chatId: id,
-          // chatName
           chatId: id,
           chatName,
       })
+      // サイドバーのやつの一覧の内どれかクリックすると、、、
+      // chatIdとchatNameっていうkeyにidとchatNameが入ったオブジェクトをstoreのstateに入れる
+      // そんで
   )}>
       <Avatar src={chatInfo[0]?.photo} />
       <SidebarChatInfoContainer>

@@ -3,7 +3,7 @@ import { IconButton } from "@material-ui/core";
 import { MicNone } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import FlipMove from "react-flip-move";
+// import FlipMove from "react-flip-move";
 import { Flipped } from 'react-flip-toolkit'
 
 import { selectChatId, selectChatName } from "../features/chatSlice";
@@ -78,6 +78,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (chatId) {
+      // 最初にuseEffectが実行されるときはchatIdがnullだから、これより下の行は実行されない。
       db.collection("chats")
         .doc(chatId)
         .collection("messages")
@@ -92,9 +93,12 @@ const Chat = () => {
         );
     }
   }, [chatId]);
+  // chatIdってのはtestoとはtest2とかに固有に割り振られたやつ
+  // testoとかtest2とかをクリックするとchatIdが変わるからuseEffectが実行されて新しいmessages(配列)ができる。んでそれが表示される。
+
 
   const sendMessage = (event) => {
-    event.preventDefault();
+    event.preventDefault(event);
     // --> これないと、sendしたあとまたレンダーかかっちゃって右側のチャット画面がいなくなっちゃう
     db.collection("chats").doc(chatId).collection("messages").add({
       uid: user.uid,
@@ -121,6 +125,7 @@ const Chat = () => {
           <>
             {messages.map(({ id, data }) => 
             // 最初の画面で何も表示されないのは、シンプルにmessagesが空の配列だからってことか。そうかそうか
+            // messagesってのは
                 <Message key={id} contents={data} />
             )}
           </>
